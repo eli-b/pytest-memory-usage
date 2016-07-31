@@ -111,7 +111,10 @@ def pytest_runtest_logreport(report):
     if configuration.getoption('memory_usage') or configuration.getini('memory_usage'):
         if report.when == 'call' and report.passed:
             if hasattr(report, 'memory_usage'):
-                writer.write(" ({memory_usage:.0f}MB)".format(memory_usage=report.memory_usage))
+                writer.write(' ({memory_usage:.0f}MB'.format(memory_usage=report.memory_usage))
+                if report.memory_usage < 0:
+                    writer.write(' - gc.collect() probably called explicitly')
+                writer.write(')')
     return None
 
 

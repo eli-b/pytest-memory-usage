@@ -47,7 +47,7 @@ _TWO_20 = float(2 ** 20)
 
 
 def get_memory(process, include_children=True):
-    """Inspired by the memory_profiler's """
+    """Inspired by the memory_profiler module's implementation"""
     try:
         mem = process.memory_info()[0] / _TWO_20
         if include_children:
